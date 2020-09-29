@@ -1,7 +1,10 @@
 (()=> {
+
+    //TODO Add left button check for impulse
+    //TODO Right button for ball dragging (force will be equal to potential energy
     const config = {
         TWO_PI : Math.PI*2,
-        color: "rgba(0,0,0,0.8)",
+        color: "rgba(255,236,140,0.85)", //"rgba(0,0,0,0.8)",
         radius :100,
         airX : 0.99,
         air : 0.78,
@@ -100,6 +103,9 @@
     }
     function loop(){
         ctx.clearRect(0,0,w,h);
+        ctx.fillStyle = "#c55fff";
+        ctx.fillRect(0,0,w,h);
+        ctx.fillStyle =config.color;
         if (!(ball.isStoppedY&&ball.isStoppedX)) {
             ball.collisionCheck();
             ball.velocityCalc();
@@ -125,20 +131,22 @@
     loop();
 
     canvas.addEventListener("mousedown",(e)=>{
-        isDown=true;
-        lastPos = {x:e.x,y:e.y};
-        ball.stop();
-        lastPos ={x: e.x, y: e.y};
+        if(e.button == 0) {
+            isDown = true;
+            lastPos = {x: e.x, y: e.y};
+            ball.stop();
+            lastPos = {x: e.x, y: e.y};
+        }
     })
-    canvas.addEventListener("mouseup",()=>{
-        ball.isStoppedY  = ball.isStoppedX= false;
-        isDown=false;
-        ball.resume();
+    canvas.addEventListener("mouseup",(e)=>{
+        if(e.button == 0) {
+            ball.isStoppedY = ball.isStoppedX = false;
+            isDown = false;
+            ball.resume();
+        }
     })
 
     canvas.addEventListener("mousemove",(e)=>{
-        if(isDown) {
             mouse = {x: e.x, y: e.y};
-        }
     })
 })();
