@@ -4,8 +4,7 @@
     class Ball{
         #pos;
         #velocity;
-        isStoppedY =false;
-        isStoppedX =false;
+        #idDragging = false;
         #mouse;
         #config = {
             TWO_PI : Math.PI*2,
@@ -14,7 +13,11 @@
             air : 0.99, //air resistance for ball slowing
             gravitation : 1, //"gravitation"
             maxSpeed : 50,
+            LMB: 0,
+            RMB:2
         }
+        isStoppedY =false;
+        isStoppedX =false;
         /**
          * @constructor
          * @param context {CanvasRenderingContext2D} Context
@@ -25,7 +28,7 @@
         constructor(context, mouse,width,height) {
             this.ctx = context;
             this.#pos = {x: mouse.x/2,y:mouse.y/2};
-            this.#velocity ={x:10,y:10};
+            this.#velocity ={x:0,y:0};
             this.#mouse = mouse;
             this.w =width;
             this.h = height;
@@ -102,13 +105,24 @@
             }
         }
 
+        //length between  two points
+        getLength({x1,y1},{x2,y2}){
+            return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+        }
+
         /**
          *
          * @param e {MouseEvent}
          */
         mouseDownEvent(e){
             this.#mouse.keyPressed = e.button;
-            if(this.#mouse.keyPressed === 0) {
+            if(this.#mouse.keyPressed === this.#config.LMB) {
+                ball.stop();
+            }
+            if(this.#mouse.keyPressed === this.#config.RMB &&
+                this.getLength({x1:e.x,y1:e.y},{x2:this.#pos.x,y2:this.#pos.y})<=
+                    this.#config.radius){
+                this.#idDragging= true;
                 ball.stop();
             }
         }
@@ -118,9 +132,14 @@
          * @param e {MouseEvent}
          */
         mouseUpEvent(e){
+            if(this.#mouse.keyPressed === this.#config.RMB){
+                this.#idDragging= false;
+            }
+            if(this.#mouse.keyPressed === this.#config.LMB){
+                ball.resume();
+            }
             this.#mouse.keyPressed = -1;
             ball.isStoppedY = ball.isStoppedX = false;
-            ball.resume();
         }
 
         /**
@@ -130,6 +149,11 @@
         mouseMoveEvent(e){
             this.#mouse.x = e.x;
             this.#mouse.y = e.y;
+            if(this.#idDragging){
+                this.#pos.x = this.#mouse.x;
+                this.#pos.y = this.#mouse.y;
+            }
+
         }
 
     }
@@ -170,5 +194,5 @@
     this.canvas.addEventListener("mousemove",(e)=>{
         ball.mouseMoveEvent(e);
     })
-
+    document.addEventListener('contextmenu', event => event.preventDefault());
 })();
