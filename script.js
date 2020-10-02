@@ -1,6 +1,37 @@
 (()=> {
-    //TODO Add dragging
-    //TODO Right button for ball dragging (force will be equal to potential energy
+    //TODO Add vector class
+
+    class Vector2d{
+        #x;
+        #y;
+        constructor(x,y) {
+            this.#x = x;
+            this.#y = y;
+        }
+        get x(){
+            return this.#x;
+        }
+
+        set x(value) {
+            this.#x = value;
+        }
+
+        get y() {
+            return this.#y;
+        }
+
+        set y(value) {
+            this.#y = value;
+        }
+
+        /**
+         * @param other {Vector2d}
+         * @return {Number}
+         */
+        getLength(other){
+            return Math.sqrt(Math.pow(other.x-this.x,2)+Math.pow(other.y-this.y,2));
+        }
+    }
     class Ball{
         #pos;
         #velocity;
@@ -27,8 +58,8 @@
          */
         constructor(context, mouse,width,height) {
             this.ctx = context;
-            this.#pos = {x: mouse.x/2,y:mouse.y/2};
-            this.#velocity ={x:0,y:0};
+            this.#pos = new Vector2d( mouse.x/2,mouse.y/2);
+            this.#velocity =new Vector2d(10,10);
             this.#mouse = mouse;
             this.w =width;
             this.h = height;
@@ -104,12 +135,6 @@
                 this.ctx.stroke();
             }
         }
-
-        //length between  two points
-        getLength({x1,y1},{x2,y2}){
-            return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
-        }
-
         /**
          *
          * @param e {MouseEvent}
@@ -120,7 +145,7 @@
                 ball.stop();
             }
             if(this.#mouse.keyPressed === this.#config.RMB &&
-                this.getLength({x1:e.x,y1:e.y},{x2:this.#pos.x,y2:this.#pos.y})<=
+                this.#pos.getLength(new Vector2d(this.#mouse.x,this.#mouse.y))<=
                     this.#config.radius){
                 this.#idDragging= true;
                 ball.stop();

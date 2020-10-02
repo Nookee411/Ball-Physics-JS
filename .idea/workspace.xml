@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f66b57ff-c21a-45c9-858e-41ba8d42c718" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +56,7 @@
       <workItem from="1601367078574" duration="668000" />
       <workItem from="1601369745565" duration="16000" />
       <workItem from="1601398280053" duration="1154000" />
-      <workItem from="1601534991413" duration="16183000" />
+      <workItem from="1601534991413" duration="18939000" />
     </task>
     <servers />
   </component>
@@ -67,10 +68,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="828" y="174" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601536383041" />
-    <state x="1245" y="239" key="#com.intellij.ide.util.MemberChooser" timestamp="1601315473019">
+    <state x="1245" y="239" key="#com.intellij.ide.util.MemberChooser" timestamp="1601629716216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1245" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1601315473019" />
+    <state x="1245" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1601629716216" />
     <state x="740" y="261" key="FileChooserDialogImpl" timestamp="1601399421358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -157,7 +158,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/script.js</url>
-          <line>121</line>
+          <line>146</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
